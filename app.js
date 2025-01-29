@@ -7,7 +7,14 @@ let receive //Essa variável apresenta o parâmetro(vlor) recebido do html
 //As variáveis abaixo são usadas para identificar se o interruptor está ligado ou desligdo (false = ligado | true = desligado)
 let sw1 = false
 let sw2 = false
+
+// a variável abaixo é usada para identificar se a lâmpada está quebrada
+
 let broken = false
+
+// a linha abaixo cria uma variável que identifica a página HTML
+let path = window.location.pathname
+// alert(path) <- Um apoio ao entendimento da lógica
 
 function sw(receive) {
     // console.log(receive) //apoio a lógica
@@ -42,8 +49,26 @@ function sw(receive) {
 }
 
 //Lógico do Operador (AND)
-if (broken !== true) {
+if (path === "/and.html" && broken !== true) {
     if (sw1 === true && sw2 === true) {
+        document.getElementById('lamp').src = "img/on.jpg"
+    } else {
+        document.getElementById('lamp').src = "img/off.jpg"
+        }
+    }
+
+//Lógico do Operador (OR)
+if (path === "/or.html" && broken !== true) {
+    if (sw1 === true || sw2 === true) {
+        document.getElementById('lamp').src = "img/on.jpg"
+    } else {
+        document.getElementById('lamp').src = "img/off.jpg"
+        }
+    }
+
+    //Lógico do Operador (NOT)
+if (path === "/not.html" && broken !== true) {
+    if (!sw1) {
         document.getElementById('lamp').src = "img/on.jpg"
     } else {
         document.getElementById('lamp').src = "img/off.jpg"
